@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Imagem Sobre Nós - DimaStore</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .test-container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        .image-container {
+            position: relative;
+            margin: 20px 0;
+        }
+        
+        .test-image {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .test-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .status {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+        
+        .success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 2px solid #10b981;
+        }
+        
+        .error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 2px solid #ef4444;
+        }
+        
+        .info {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 2px solid #3b82f6;
+        }
+        
+        .test-buttons {
+            margin: 20px 0;
+        }
+        
+        .btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+            transition: background 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #2563eb;
+        }
+        
+        .btn-secondary {
+            background: #6b7280;
+        }
+        
+        .btn-secondary:hover {
+            background: #4b5563;
+        }
+        
+        .file-info {
+            background: #f3f4f6;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            text-align: left;
+        }
+        
+        .file-info h4 {
+            margin: 0 0 10px 0;
+            color: #374151;
+        }
+        
+        .file-info p {
+            margin: 5px 0;
+            font-family: monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>📸 Teste da Imagem "Sobre Nós"</h1>
+        <p>Verificando se a imagem da equipe DimaStore está carregando corretamente...</p>
+        
+        <div class="file-info">
+            <h4>📁 Informações do Arquivo:</h4>
+            <p><strong>Caminho:</strong> /assets/about/equipe_dimastore.jpg</p>
+            <p><strong>Localização:</strong> public/assets/about/equipe_dimastore.jpg</p>
+            <p><strong>Status:</strong> <span id="fileStatus">Verificando...</span></p>
+        </div>
+        
+        <div class="image-container">
+            <img 
+                id="equipeImage"
+                src="/assets/about/equipe_dimastore.jpg" 
+                alt="Equipe DimaStore"
+                class="test-image"
+                onload="onImageLoad()"
+                onerror="onImageError()"
+            />
+        </div>
+        
+        <div id="statusMessage" class="status info">
+            Carregando imagem...
+        </div>
+        
+        <div class="test-buttons">
+            <button class="btn" onclick="testImage()">🔄 Testar Novamente</button>
+            <button class="btn btn-secondary" onclick="showFallback()">🖼️ Mostrar Fallback</button>
+            <button class="btn btn-secondary" onclick="checkConsole()">🔍 Ver Console</button>
+        </div>
+        
+        <div id="debugInfo" style="display: none; margin-top: 20px; text-align: left;">
+            <h4>🐛 Informações de Debug:</h4>
+            <div id="debugContent"></div>
+        </div>
+    </div>
+
+    <script>
+        let imageLoaded = false;
+        let imageError = false;
+        
+        function onImageLoad() {
+            imageLoaded = true;
+            imageError = false;
+            document.getElementById('statusMessage').className = 'status success';
+            document.getElementById('statusMessage').innerHTML = '✅ Imagem carregada com sucesso!';
+            document.getElementById('fileStatus').innerHTML = '✅ Arquivo encontrado e carregado';
+            
+            console.log('✅ Imagem da equipe DimaStore carregada com sucesso!');
+            console.log('📁 Caminho:', '/assets/about/equipe_dimastore.jpg');
+        }
+        
+        function onImageError() {
+            imageError = true;
+            imageLoaded = false;
+            document.getElementById('statusMessage').className = 'status error';
+            document.getElementById('statusMessage').innerHTML = '❌ Erro ao carregar a imagem. Mostrando fallback.';
+            document.getElementById('fileStatus').innerHTML = '❌ Arquivo não encontrado ou erro de carregamento';
+            
+            console.error('❌ Erro ao carregar imagem da equipe DimaStore');
+            console.error('📁 Caminho tentado:', '/assets/about/equipe_dimastore.jpg');
+        }
+        
+        function testImage() {
+            const img = document.getElementById('equipeImage');
+            document.getElementById('statusMessage').className = 'status info';
+            document.getElementById('statusMessage').innerHTML = '🔄 Testando carregamento...';
+            
+            // Força recarregamento da imagem
+            img.src = img.src + '?t=' + new Date().getTime();
+        }
+        
+        function showFallback() {
+            const img = document.getElementById('equipeImage');
+            img.src = "https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=600";
+            document.getElementById('statusMessage').className = 'status info';
+            document.getElementById('statusMessage').innerHTML = '🖼️ Mostrando imagem de fallback (externa)';
+        }
+        
+        function checkConsole() {
+            document.getElementById('debugInfo').style.display = 'block';
+            const debugContent = document.getElementById('debugContent');
+            
+            debugContent.innerHTML = `
+                <p><strong>Status da Imagem:</strong> ${imageLoaded ? '✅ Carregada' : imageError ? '❌ Erro' : '⏳ Carregando'}</p>
+                <p><strong>URL da Imagem:</strong> /assets/about/equipe_dimastore.jpg</p>
+                <p><strong>Timestamp:</strong> ${new Date().toLocaleString()}</p>
+                <p><strong>User Agent:</strong> ${navigator.userAgent}</p>
+                <p><strong>Console:</strong> Abra F12 para ver logs detalhados</p>
+            `;
+            
+            console.log('🔍 Debug - Informações da imagem:');
+            console.log('URL:', '/assets/about/equipe_dimastore.jpg');
+            console.log('Status:', imageLoaded ? 'Carregada' : imageError ? 'Erro' : 'Carregando');
+            console.log('Timestamp:', new Date().toISOString());
+        }
+        
+        // Verificação automática após 3 segundos
+        setTimeout(() => {
+            if (!imageLoaded && !imageError) {
+                document.getElementById('statusMessage').className = 'status error';
+                document.getElementById('statusMessage').innerHTML = '⏰ Timeout: Imagem não carregou em 3 segundos';
+                document.getElementById('fileStatus').innerHTML = '⏰ Timeout no carregamento';
+            }
+        }, 3000);
+    </script>
+</body>
+</html>

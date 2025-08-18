@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Foto Apela Angolano - DimaStore</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid #3b82f6;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+            margin: 0 auto 20px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+            font-weight: bold;
+        }
+        
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .avatar.fallback {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        }
+        
+        .name {
+            font-size: 28px;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 15px;
+        }
+        
+        .feedback {
+            font-size: 18px;
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        
+        .stars {
+            color: #fbbf24;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .status {
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        
+        .status.success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 2px solid #10b981;
+        }
+        
+        .status.error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 2px solid #ef4444;
+        }
+        
+        .status.loading {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 2px solid #3b82f6;
+        }
+        
+        .info {
+            background: #f3f4f6;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: left;
+        }
+        
+        .info h3 {
+            margin: 0 0 10px 0;
+            color: #374151;
+        }
+        
+        .info ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #6b7280;
+        }
+        
+        .info li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🖼️ Teste da Foto do Apela Angolano</h1>
+        
+        <div id="status" class="status loading">
+            🔄 Carregando foto...
+        </div>
+        
+        <div class="avatar" id="avatar">
+            <img 
+                src="/assets/avatars/apela_angolano.jpg" 
+                alt="Foto do Apela Angolano"
+                onload="onImageLoad()"
+                onerror="onImageError()"
+            >
+            <span class="fallback" style="display: none;">A</span>
+        </div>
+        
+        <div class="name">Apela Angolano</div>
+        <div class="feedback">💎 Site confiável e rápido, sempre recebo meus diamantes! 🇦🇴</div>
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        
+        <div class="info">
+            <h3>📋 Informações do Teste:</h3>
+            <ul>
+                <li><strong>Arquivo:</strong> apela_angolano.jpg</li>
+                <li><strong>Pasta:</strong> public/assets/avatars/</li>
+                <li><strong>Caminho:</strong> /assets/avatars/apela_angolano.jpg</li>
+                <li><strong>Status:</strong> <span id="statusText">Verificando...</span></li>
+            </ul>
+        </div>
+        
+        <div class="info">
+            <h3>🔧 Como Testar no Site Completo:</h3>
+            <ul>
+                <li>Instale o Node.js (veja INSTALAR_NODEJS.md)</li>
+                <li>Execute: npm install</li>
+                <li>Execute: npm run dev</li>
+                <li>Acesse: http://localhost:5173</li>
+                <li>Navegue até a seção de feedbacks</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        let imageLoaded = false;
+        let imageError = false;
+        
+        function onImageLoad() {
+            imageLoaded = true;
+            document.getElementById('status').className = 'status success';
+            document.getElementById('status').innerHTML = '✅ Foto carregada com sucesso!';
+            document.getElementById('statusText').innerHTML = 'Carregada ✅';
+        }
+        
+        function onImageError() {
+            imageError = true;
+            document.getElementById('status').className = 'status error';
+            document.getElementById('status').innerHTML = '❌ Erro ao carregar a foto';
+            document.getElementById('statusText').innerHTML = 'Erro ❌';
+            
+            // Mostrar fallback
+            document.querySelector('.avatar img').style.display = 'none';
+            document.querySelector('.avatar .fallback').style.display = 'flex';
+        }
+        
+        // Verificar após 3 segundos se a imagem carregou
+        setTimeout(() => {
+            if (!imageLoaded && !imageError) {
+                document.getElementById('status').className = 'status error';
+                document.getElementById('status').innerHTML = '⏰ Timeout - Imagem não carregou';
+                document.getElementById('statusText').innerHTML = 'Timeout ⏰';
+                
+                // Mostrar fallback
+                document.querySelector('.avatar img').style.display = 'none';
+                document.querySelector('.avatar .fallback').style.display = 'flex';
+            }
+        }, 3000);
+    </script>
+</body>
+</html>
