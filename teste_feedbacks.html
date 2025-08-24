@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Feedbacks - DimaStore</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .feedback {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #667eea;
+        }
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid #667eea;
+            margin-right: 15px;
+            float: left;
+        }
+        .name {
+            font-weight: bold;
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .text {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .stars {
+            color: #ffd700;
+            font-size: 20px;
+        }
+        .status {
+            background: #4CAF50;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .error {
+            background: #f44336;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Teste dos Feedbacks - DimaStore</h1>
+        
+        <div id="status"></div>
+        
+        <div class="feedback">
+            <img src="/assets/avatars/apela_angolano.jpg" alt="Apela Angolano" class="avatar" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div style="display:none; width:60px; height:60px; border-radius:50%; background:linear-gradient(135deg, #667eea, #764ba2); color:white; text-align:center; line-height:60px; font-size:24px; font-weight:bold; float:left; margin-right:15px;">A</div>
+            <div class="name">Apela Angolano</div>
+            <div class="text">A DimaStore mostrou ser diferente, cumprem o que prometem e entregam diamantes rápido. É uma loja que passa confiança.</div>
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <div class="status">✅ Foto Real Ativada</div>
+        </div>
+        
+        <div class="feedback">
+            <img src="/assets/avatars/mob_angelo.jpg" alt="Mob_Ângelo" class="avatar" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div style="display:none; width:60px; height:60px; border-radius:50%; background:linear-gradient(135deg, #667eea, #764ba2); color:white; text-align:center; line-height:60px; font-size:24px; font-weight:bold; float:left; margin-right:15px;">M</div>
+            <div class="name">Mob_Ângelo</div>
+            <div class="text">A DimaStore é a solução que jogador angolano precisava! Serviço rápido, seguro e com atendimento. Experiência 100% aprovada.</div>
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <div class="status">✅ Foto Real Ativada</div>
+        </div>
+        
+        <div class="feedback">
+            <img src="/assets/avatars/edzinx.jpg" alt="EdzinX" class="avatar" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div style="display:none; width:60px; height:60px; border-radius:50%; background:linear-gradient(135deg, #667eea, #764ba2); color:white; text-align:center; line-height:60px; font-size:24px; font-weight:bold; float:left; margin-right:15px;">E</div>
+            <div class="name">EdzinX</div>
+            <div class="text">A DimaStore chegou pra mudar o cenário em Angola! Testei o serviço e recomendo de olhos fechados, rápido e confiável.</div>
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <div class="status">✅ Foto Real Ativada</div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <button onclick="testarImagens()" style="background: #667eea; color: white; border: none; padding: 15px 30px; border-radius: 10px; font-size: 16px; cursor: pointer;">🧪 Testar Carregamento das Imagens</button>
+        </div>
+    </div>
+
+    <script>
+        function testarImagens() {
+            const statusDiv = document.getElementById('status');
+            const avatars = document.querySelectorAll('.avatar');
+            let loaded = 0;
+            let failed = 0;
+            
+            avatars.forEach((avatar, index) => {
+                const img = new Image();
+                img.onload = function() {
+                    loaded++;
+                    avatar.style.borderColor = '#4CAF50';
+                    checkComplete();
+                };
+                img.onerror = function() {
+                    failed++;
+                    avatar.style.borderColor = '#f44336';
+                    checkComplete();
+                };
+                img.src = avatar.src;
+            });
+            
+            function checkComplete() {
+                if (loaded + failed === avatars.length) {
+                    if (failed === 0) {
+                        statusDiv.innerHTML = `<div class="status" style="background:#4CAF50; margin:20px 0;">✅ Todas as ${loaded} imagens carregaram com sucesso!</div>`;
+                    } else {
+                        statusDiv.innerHTML = `<div class="error">❌ ${failed} de ${avatars.length} imagens falharam ao carregar. Verifique os caminhos das imagens.</div>`;
+                    }
+                }
+            }
+        }
+        
+        // Teste automático ao carregar a página
+        window.onload = function() {
+            setTimeout(testarImagens, 1000);
+        };
+    </script>
+</body>
+</html>

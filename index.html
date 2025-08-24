@@ -1,14 +1,273 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR" translate="no">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- PROTEÇÃO COMPLETA CONTRA TRADUÇÃO AUTOMÁTICA -->
+    <meta name="google" content="notranslate" />
+    <meta name="googlebot" content="notranslate" />
+    <meta name="translate" content="no" />
+    <meta name="robots" content="notranslate" />
+    <meta name="slurp" content="notranslate" />
+    <meta name="msnbot" content="notranslate" />
+    <meta name="bingbot" content="notranslate" />
+    <meta name="yandex" content="notranslate" />
+    <meta name="baiduspider" content="notranslate" />
+    <meta name="duckduckbot" content="notranslate" />
+    
     <title>Site Oficial DimaStore - Loja Virtual Free Fire</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Russo+One&display=swap" rel="stylesheet">
+    
+    <!-- CSS ANTI-TRADUÇÃO -->
+    <style>
+      /* Desabilita seleção de texto para evitar tradução */
+      * {
+        -webkit-user-select: none !important;
+        -moz-user-select: none !important;
+        -ms-user-select: none !important;
+        user-select: none !important;
+        -webkit-touch-callout: none !important;
+        -webkit-tap-highlight-color: transparent !important;
+      }
+      
+      /* Permite seleção apenas em inputs e textareas */
+      input, textarea, [contenteditable="true"] {
+        -webkit-user-select: text !important;
+        -moz-user-select: text !important;
+        -ms-user-select: text !important;
+        user-select: text !important;
+      }
+      
+      /* Remove indicadores de tradução do Chrome */
+      body {
+        -webkit-translate: none !important;
+        translate: none !important;
+      }
+      
+      /* Esconde elementos de tradução do Chrome */
+      .goog-te-banner-frame,
+      .goog-te-gadget,
+      .goog-te-combo,
+      .goog-te-menu-value,
+      .goog-te-banner,
+      .goog-te-gadget-simple,
+      .goog-te-gadget-icon,
+      .goog-te-gadget-simple,
+      .goog-te-banner-frame,
+      .goog-te-menu-frame,
+      .goog-te-menu2,
+      .goog-te-banner-frame,
+      .goog-te-gadget,
+      .goog-te-gadget-simple,
+      .goog-te-banner,
+      .goog-te-gadget-icon,
+      .goog-te-gadget-simple,
+      .goog-te-banner-frame,
+      .goog-te-menu-frame,
+      .goog-te-menu2 {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        height: 0 !important;
+        width: 0 !important;
+        position: absolute !important;
+        left: -9999px !important;
+        top: -9999px !important;
+        z-index: -9999 !important;
+      }
+    </style>
   </head>
-  <body>
-    <div id="root"></div>
+  <body translate="no">
+    <div id="root" translate="no"></div>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- JAVASCRIPT ANTI-TRADUÇÃO -->
+    <script>
+      // PROTEÇÃO COMPLETA CONTRA TRADUÇÃO AUTOMÁTICA
+      (function() {
+        'use strict';
+        
+        // Função para remover elementos de tradução
+        function removeTranslationElements() {
+          const selectors = [
+            '.goog-te-banner-frame',
+            '.goog-te-gadget',
+            '.goog-te-combo',
+            '.goog-te-menu-value',
+            '.goog-te-banner',
+            '.goog-te-gadget-simple',
+            '.goog-te-gadget-icon',
+            '.goog-te-menu-frame',
+            '.goog-te-menu2',
+            '[data-google-translate]',
+            '.google-translate',
+            '.translate',
+            '.translation'
+          ];
+          
+          selectors.forEach(selector => {
+            const elements = document.querySelectorAll(selector);
+            elements.forEach(el => {
+              el.style.display = 'none';
+              el.style.visibility = 'hidden';
+              el.style.opacity = '0';
+              el.style.height = '0';
+              el.style.width = '0';
+              el.style.position = 'absolute';
+              el.style.left = '-9999px';
+              el.style.top = '-9999px';
+              el.style.zIndex = '-9999';
+            });
+          });
+        }
+        
+        // Função para adicionar atributos anti-tradução
+        function addAntiTranslateAttributes() {
+          const allElements = document.querySelectorAll('*');
+          allElements.forEach(el => {
+            if (!el.hasAttribute('translate')) {
+              el.setAttribute('translate', 'no');
+            }
+          });
+        }
+        
+        // Função para bloquear eventos de tradução
+        function blockTranslationEvents() {
+          // Bloqueia eventos de teclado relacionados à tradução
+          document.addEventListener('keydown', function(e) {
+            // Ctrl+Shift+T (atalho comum para tradução)
+            if (e.ctrlKey && e.shiftKey && e.key === 'T') {
+              e.preventDefault();
+              e.stopPropagation();
+              return false;
+            }
+            
+            // Ctrl+Shift+L (atalho para mudar idioma)
+            if (e.ctrlKey && e.shiftKey && e.key === 'L') {
+              e.preventDefault();
+              e.stopPropagation();
+              return false;
+            }
+          }, true);
+          
+          // Bloqueia eventos de clique em elementos de tradução
+          document.addEventListener('click', function(e) {
+            const target = e.target;
+            if (target && (
+              target.classList.contains('goog-te') ||
+              target.classList.contains('translate') ||
+              target.classList.contains('google-translate') ||
+              target.getAttribute('data-google-translate')
+            )) {
+              e.preventDefault();
+              e.stopPropagation();
+              return false;
+            }
+          }, true);
+        }
+        
+        // Função para monitorar mudanças no DOM
+        function observeDOMChanges() {
+          const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+              if (mutation.type === 'childList') {
+                mutation.addedNodes.forEach(function(node) {
+                  if (node.nodeType === 1) { // Element node
+                    const element = node;
+                    if (element.classList && (
+                      element.classList.contains('goog-te') ||
+                      element.classList.contains('translate') ||
+                      element.classList.contains('google-translate')
+                    )) {
+                      element.style.display = 'none';
+                      element.style.visibility = 'hidden';
+                    }
+                  }
+                });
+              }
+            });
+          });
+          
+          observer.observe(document.body, {
+            childList: true,
+            subtree: true
+          });
+        }
+        
+        // Função para forçar atributos anti-tradução
+        function forceAntiTranslate() {
+          // Adiciona translate="no" em todos os elementos
+          const allElements = document.querySelectorAll('*');
+          allElements.forEach(el => {
+            el.setAttribute('translate', 'no');
+          });
+          
+          // Força o idioma português
+          document.documentElement.lang = 'pt-BR';
+          document.documentElement.setAttribute('translate', 'no');
+          
+          // Remove qualquer banner de tradução
+          const banners = document.querySelectorAll('[class*="translate"], [class*="goog-te"]');
+          banners.forEach(banner => {
+            banner.remove();
+          });
+        }
+        
+        // Executa todas as proteções
+        function initAntiTranslation() {
+          removeTranslationElements();
+          addAntiTranslateAttributes();
+          blockTranslationEvents();
+          observeDOMChanges();
+          forceAntiTranslate();
+          
+          // Executa periodicamente para garantir proteção
+          setInterval(function() {
+            removeTranslationElements();
+            addAntiTranslateAttributes();
+            forceAntiTranslate();
+          }, 1000);
+        }
+        
+        // Inicia quando o DOM estiver pronto
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initAntiTranslation);
+        } else {
+          initAntiTranslation();
+        }
+        
+        // Executa também quando a página estiver completamente carregada
+        window.addEventListener('load', initAntiTranslation);
+        
+        // Executa quando a página ganhar foco
+        window.addEventListener('focus', initAntiTranslation);
+        
+        // Executa quando a página voltar a ser visível
+        document.addEventListener('visibilitychange', function() {
+          if (!document.hidden) {
+            initAntiTranslation();
+          }
+        });
+        
+        // Bloqueia tentativas de tradução via console
+        Object.defineProperty(window, 'google', {
+          get: function() {
+            return undefined;
+          },
+          set: function() {
+            return false;
+          }
+        });
+        
+        // Remove qualquer função de tradução global
+        if (window.google && window.google.translate) {
+          delete window.google.translate;
+        }
+        
+        console.log('🚫 PROTEÇÃO ANTI-TRADUÇÃO ATIVADA - DimaStore não pode ser traduzido!');
+      })();
+    </script>
   </body>
 </html>
